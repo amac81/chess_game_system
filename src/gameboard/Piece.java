@@ -1,7 +1,5 @@
 package gameboard;
 
-import java.util.List;
-
 /* OOP Topics:
  * - Associations
  * - Encapsulation / Access modifiers

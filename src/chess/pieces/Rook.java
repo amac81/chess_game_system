@@ -1,8 +1,15 @@
 package chess.pieces;
 
 import chess.ChessPiece;
+import chess.enums.Color;
+import gameboard.Board;
 
 public class Rook extends ChessPiece{
+
+	public Rook(Board board, Color color) {
+		super(board, color);
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public boolean isThereOpponentPiece() {

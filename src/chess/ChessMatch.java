@@ -1,6 +1,5 @@
 package chess;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import chess.enums.Color;
@@ -15,8 +14,8 @@ public class ChessMatch {
 	private ChessPiece enPassantVulnerable;
 	private ChessPiece promoted;
 
-	public ChessMatch() {
-		board = new Board();
+	public ChessMatch() {// it is this class that knows the size of the board
+		board = new Board(8, 8);
 	}
 
 	public ChessMatch(int turn, Color currentPlayer, Boolean check, Boolean checkMate, ChessPiece enPassantVulnerable,
@@ -61,8 +60,15 @@ public class ChessMatch {
 		return promoted;
 	}
 
-	public List<ChessPiece> getPieces() {
-		return null;
+	public ChessPiece[][] getPieces() {
+		ChessPiece[][] mat = new ChessPiece[board.getRows()][board.getColumns()];
+		for (int i = 0; i < board.getRows(); i++) {
+			for (int j = 0; j < board.getColumns(); j++) {
+				// downcast to ChessPiece
+				mat[i][j] = (ChessPiece) board.piece(i, j);
+			}
+		}
+		return mat; //returns the array of pieces from my chess match
 	}
 
 	public List<Boolean> possibleMove(ChessPosition sourcePosition) {
