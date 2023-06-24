@@ -3,7 +3,11 @@ package chess;
 import java.util.List;
 
 import chess.enums.Color;
+import chess.pieces.King;
+import chess.pieces.Queen;
+import chess.pieces.Rook;
 import gameboard.Board;
+import gameboard.Position;
 
 public class ChessMatch {
 	private Board board;
@@ -16,6 +20,7 @@ public class ChessMatch {
 
 	public ChessMatch() {// it is this class that knows the size of the board
 		board = new Board(8, 8);
+		initialSetup();
 	}
 
 	public ChessMatch(int turn, Color currentPlayer, Boolean check, Boolean checkMate, ChessPiece enPassantVulnerable,
@@ -28,6 +33,14 @@ public class ChessMatch {
 		this.promoted = promoted;
 	}
 
+	
+	private void initialSetup() {
+		board.placePiece(new Rook(board, Color.WHITE), new Position (1, 2));
+		board.placePiece(new King(board, Color.BLACK), new Position (4, 2));
+		board.placePiece(new Queen(board, Color.WHITE), new Position (3, 4));
+	}
+
+	
 	public Board getBoard() {
 		return board;
 	}
@@ -68,6 +81,7 @@ public class ChessMatch {
 				mat[i][j] = (ChessPiece) board.piece(i, j);
 			}
 		}
+		
 		return mat; //returns the array of pieces from my chess match
 	}
 

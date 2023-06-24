@@ -1,15 +1,12 @@
 package gameboard;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /* OOP Topics:
  * 
  * - Associations
  * - Encapsulation / Access modifiers
  * - Enumerations
  * - Inheritance
- * - Downcasting
+ * - Down casting
  * - Static Members
  * - Layers Pattern
  * 
@@ -53,7 +50,8 @@ public class Board {
 	}
 
 	public void placePiece(Piece piece, Position position) {
-
+		pieces[position.getRow()][position.getColumn()] = piece;
+		piece.position = position;	
 	}
 
 	public Piece removePiece(Position position) {

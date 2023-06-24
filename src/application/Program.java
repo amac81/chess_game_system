@@ -11,7 +11,11 @@ public class Program {
 		
 		
 		
+	
+		//UI.clearScreen();
 		UI.printBoard(chessMatch.getPieces());
+		
+		
 	}
 
 }

@@ -28,5 +28,11 @@ public class Pawn extends ChessPiece{
 		// TODO Auto-generated method stub
 		
 	}
+	
+
+	@Override
+	public String toString() {
+		return "P";	
+	}
 
 }

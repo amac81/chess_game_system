@@ -4,7 +4,15 @@ import chess.ChessPiece;
 import chess.enums.Color;
 import gameboard.Board;
 
-public class Rook extends ChessPiece{
+/* OOP Topics (for all classes that extends ChessPiece):
+ *
+ * - Inheritance
+ * - Overriding
+ * - Polymorphism (ToString)
+ * 
+ */
+
+public class Rook extends ChessPiece {
 
 	public Rook(Board board, Color color) {
 		super(board, color);
@@ -20,13 +28,18 @@ public class Rook extends ChessPiece{
 	@Override
 	public void increaseMoveCount() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void decreaseMoveCount() {
 		// TODO Auto-generated method stub
-		
+
+	}
+
+	@Override
+	public String toString() {
+		return "R";
 	}
 
 }
