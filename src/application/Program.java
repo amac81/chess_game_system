@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.Scanner;
 
-import entities.enums.Color;
+import chess.enums.Color;
 import gameboard.Piece;
 
 public class Program {
