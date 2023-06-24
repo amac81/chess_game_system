@@ -3,19 +3,24 @@ package gameboard;
 import java.util.ArrayList;
 import java.util.List;
 
+/* OOP Topics:
+ * - Associations
+ * - Encapsulation / Access modifiers
+ * 
+ * Data Structures Topics:
+ * - Matrix
+ */
+
 public class Board {
 	private int rows;
 	private int columns;
-	private List<Piece> pieces;
+	private Piece[][] pieces;
 
-	public Board() {
-		pieces = new ArrayList<>();
-	}
 
-	public Board(int rows, int columns, List<Piece> pieces) {
+	public Board(int rows, int columns) {
 		this.rows = rows;
 		this.columns = columns;
-		this.pieces = pieces;
+		pieces = new Piece[rows][columns];
 	}
 
 	public int getRows() {
@@ -24,10 +29,6 @@ public class Board {
 
 	public int getColumns() {
 		return columns;
-	}
-
-	public List<Piece> getPieces() {
-		return pieces;
 	}
 
 	public Piece piece(int row, int column) {

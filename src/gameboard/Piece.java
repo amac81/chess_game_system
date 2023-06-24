@@ -2,22 +2,34 @@ package gameboard;
 
 import java.util.List;
 
+/* OOP Topics:
+ * - Associations
+ * - Encapsulation / Access modifiers
+ * 
+ * Data Structures Topics:
+ * - Matrix
+ */
+
+//this class represents 
 public abstract class Piece {
-	protected Position position;
-	private List<Boolean> possibleMoves;
-
-	public Piece() {
-	}
-
-	public Piece(Position position, List<Boolean> possibleMoves) {
-		this.position = position;
-		this.possibleMoves = possibleMoves;
+	protected Position position; //isn't a chess position
+	private Board board;
+	
+	public Piece(Board board) {
+		this.board = board;
+		position = null;
 	}
 
 	public Piece(Position position) {
 		this.position = position;
 	}
+	
+	//internal use of board "layer"
+	protected Board getBoard() {
+		return board;
+	}
 
+	
 	public Boolean[][] possibleMoves() {
 
 		Boolean moves[][] = null;
@@ -25,9 +37,6 @@ public abstract class Piece {
 		return moves;
 	}
 
-	public List<Boolean> possibleMove(Position position) {
-		return possibleMoves;
-	}
 
 	public Boolean isThereAnyPossibleMove(Position position) {
 		return true;
