@@ -1,6 +1,7 @@
 package application;
 
 import chess.ChessPiece;
+import chess.enums.Color;
 
 /*
  * This UserInterface class:
@@ -27,7 +28,10 @@ public class UI {
 		if (piece == null) {
 			System.out.print("-");
 		} else {
-			System.out.print(piece);
+			if(piece.getColor() == Color.BLACK)
+				System.out.print(ConsoleColors.RED + piece + ConsoleColors.RESET );
+			else
+				System.out.print(ConsoleColors.GREEN + piece + ConsoleColors.RESET );
 		}
 		System.out.print(" ");// to separate pieces
 
@@ -37,6 +41,11 @@ public class UI {
 	public static void clearScreen() {
 		System.out.print("\033[H\033[2J");
 		System.out.flush();
+	}
+
+	// https://stackoverflow.com/questions/5762491/how-to-print-color-in-console-using-system-out-println
+	public static void testTextColors() {
+		System.out.println(ConsoleColors.RED + "RED COLORED" + ConsoleColors.RESET + " NORMAL");
 	}
 
 }

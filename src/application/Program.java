@@ -10,7 +10,7 @@ public class Program {
 		ChessMatch chessMatch = new ChessMatch();
 		
 		
-		
+		//UI.testTextColors();
 	
 		//UI.clearScreen();
 		UI.printBoard(chessMatch.getPieces());
