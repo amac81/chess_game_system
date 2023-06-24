@@ -1,16 +1,33 @@
 package gameboard;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
 	private int rows;
 	private int columns;
-	private List <Piece> pieces;
+	private List<Piece> pieces;
+
+	public Board() {
+		pieces = new ArrayList<>();
+	}
 
 	public Board(int rows, int columns, List<Piece> pieces) {
 		this.rows = rows;
 		this.columns = columns;
 		this.pieces = pieces;
+	}
+
+	public int getRows() {
+		return rows;
+	}
+
+	public int getColumns() {
+		return columns;
+	}
+
+	public List<Piece> getPieces() {
+		return pieces;
 	}
 
 	public Piece piece(int row, int column) {

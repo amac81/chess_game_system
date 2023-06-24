@@ -1,10 +1,17 @@
 package gameboard;
 
+import java.util.List;
+
 public abstract class Piece {
 	protected Position position;
+	private List<Boolean> possibleMoves;
 
 	public Piece() {
+	}
 
+	public Piece(Position position, List<Boolean> possibleMoves) {
+		this.position = position;
+		this.possibleMoves = possibleMoves;
 	}
 
 	public Piece(Position position) {
@@ -18,8 +25,8 @@ public abstract class Piece {
 		return moves;
 	}
 
-	public Boolean possibleMove(Position position) {
-		return true;
+	public List<Boolean> possibleMove(Position position) {
+		return possibleMoves;
 	}
 
 	public Boolean isThereAnyPossibleMove(Position position) {

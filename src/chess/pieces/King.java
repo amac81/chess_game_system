@@ -1,5 +1,30 @@
 package chess.pieces;
 
-public class King {
+import chess.ChessPiece;
+import chess.enums.Color;
+
+public class King extends ChessPiece {
+	
+	
+
+	@Override
+	public boolean isThereOpponentPiece() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void increaseMoveCount() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void decreaseMoveCount() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 
 }

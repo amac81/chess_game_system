@@ -7,6 +7,10 @@ public abstract class ChessPiece extends Piece {
 	private Color color;
 	private int moveCount;
 
+	public ChessPiece() {
+	
+	}
+	
 	public ChessPiece(Color color, int moveCount) {
 		this.color = color;
 		this.moveCount = moveCount;

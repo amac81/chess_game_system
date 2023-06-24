@@ -1,5 +1,25 @@
 package chess.pieces;
 
-public class Queen {
+import chess.ChessPiece;
+
+public class Queen extends ChessPiece{
+
+	@Override
+	public boolean isThereOpponentPiece() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void increaseMoveCount() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void decreaseMoveCount() {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
