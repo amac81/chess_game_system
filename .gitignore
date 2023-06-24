@@ -141,3 +141,4 @@ Icon
 op-activiti/src/main/resources/mapper/test.txt
 op-task/op-task-autocheck/src/main/resources/mapper/test.txt
 /build.xml
+/bin/
