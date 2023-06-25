@@ -29,9 +29,9 @@ public class UI {
 			System.out.print("-");
 		} else {
 			if(piece.getColor() == Color.BLACK)
-				System.out.print(ConsoleColors.RED + piece + ConsoleColors.RESET );
+				System.out.print(ConsoleColors.BLACK_BOLD + ConsoleColors.WHITE_BACKGROUND + piece + ConsoleColors.RESET );
 			else
-				System.out.print(ConsoleColors.GREEN + piece + ConsoleColors.RESET );
+				System.out.print(ConsoleColors.WHITE_BRIGHT + ConsoleColors.BLACK_BACKGROUND + piece + ConsoleColors.RESET );
 		}
 		System.out.print(" ");// to separate pieces
 

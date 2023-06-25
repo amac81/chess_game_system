@@ -8,7 +8,7 @@ package gameboard;
  * 
  */
 
-//this class represents a position in the game board
+//this class represents a position in the Matrix
 public class Position {
 	private int row;
 	private int column;

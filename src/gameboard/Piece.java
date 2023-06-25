@@ -10,7 +10,7 @@ package gameboard;
 
 //this class represents 
 public abstract class Piece {
-	protected Position position; //isn't a chess position
+	protected Position position; //isn't a chess position, is matrix position
 	private Board board;
 	
 	public Piece(Board board) {
