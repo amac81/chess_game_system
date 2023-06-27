@@ -8,7 +8,7 @@ package gameboard;
  * - Matrix
  */
 
-//this class represents 
+//this class represents a "piece" in the matrix
 public abstract class Piece {
 	protected Position position; //isn't a chess position, is matrix position
 	private Board board;

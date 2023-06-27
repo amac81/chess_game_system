@@ -1,5 +1,6 @@
 package application;
 
+//https://stackoverflow.com/questions/5762491/how-to-print-color-in-console-using-system-out-println
 public class ConsoleColors {
     // Reset
     public static final String RESET = "\033[0m";  // Text Reset
