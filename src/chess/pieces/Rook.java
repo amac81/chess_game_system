@@ -3,6 +3,7 @@ package chess.pieces;
 import chess.ChessPiece;
 import chess.enums.Color;
 import gameboard.Board;
+import gameboard.Position;
 
 /* OOP Topics (for all classes that extends ChessPiece):
  *
@@ -44,9 +45,28 @@ public class Rook extends ChessPiece {
 	@Override
 	public boolean[][] possibleMoves() {
 		// initially, when created, the matrix has all positions with the value False
-
 		boolean[][] auxMat = new boolean[getBoard().getRows()][getBoard().getColumns()];
-
+		
+		Position p = new Position(0, 0);
+		
+		//above
+		p.setValues(position.getRow() - 1, position.getColumn());
+		while(getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {
+			auxMat[p.getRow()][p.getColumn()] = true;
+			p.setRow(p.getRow() - 1);			
+		}
+		
+		if(getBoard().positionExists(p) && isThereOpponentPiece(p)) {
+			auxMat[p.getRow()][p.getColumn()] = true;
+		}
+		
+		//left
+		
+		//right
+	
+		//below
+		
+		
 		return auxMat;
 	}
 

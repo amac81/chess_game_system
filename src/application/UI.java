@@ -33,7 +33,7 @@ public class UI {
 			System.out.print("-");
 		} else {
 			if(piece.getColor() == Color.BLACK)
-				System.out.print(ConsoleColors.BLACK_BOLD + ConsoleColors.WHITE_BACKGROUND + piece + ConsoleColors.RESET );
+				System.out.print(ConsoleColors.YELLOW + ConsoleColors.BLACK_BACKGROUND + piece + ConsoleColors.RESET );
 			else
 				System.out.print(ConsoleColors.WHITE_BRIGHT + ConsoleColors.BLACK_BACKGROUND + piece + ConsoleColors.RESET );
 		}
@@ -56,7 +56,7 @@ public class UI {
 	
 	// https://stackoverflow.com/questions/2979383/java-clear-the-console
 	public static void clearScreen() {
-		System.out.print("\033[H\033[2J");
+		System.out.print("\033[H\033[2J"); 
 		System.out.flush();
 	}
 
