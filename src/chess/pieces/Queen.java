@@ -12,12 +12,6 @@ public class Queen extends ChessPiece{
 	}
 
 	@Override
-	public boolean isThereOpponentPiece() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public void increaseMoveCount() {
 		// TODO Auto-generated method stub
 		

@@ -19,11 +19,6 @@ public class Rook extends ChessPiece {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public boolean isThereOpponentPiece() {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 	@Override
 	public void increaseMoveCount() {
@@ -42,14 +37,17 @@ public class Rook extends ChessPiece {
 		return "R";
 	}
 
+	// the rook can move in a straight line, horizontally and vertically free
+	// positions, including positions where there is an opponent's piece (the rook can capture it)
+	// 
+	// to the free position, before the allied piece (of the same type), not including the position of this
 	@Override
-	public 	boolean[][] possibleMoves() {
-		//initially, when created, the matrix has all positions with the value False
-		
-		boolean [][] auxMat = new boolean[getBoard().getRows()][getBoard().getColumns()];
-		
+	public boolean[][] possibleMoves() {
+		// initially, when created, the matrix has all positions with the value False
+
+		boolean[][] auxMat = new boolean[getBoard().getRows()][getBoard().getColumns()];
+
 		return auxMat;
 	}
-
 
 }

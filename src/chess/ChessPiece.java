@@ -3,6 +3,7 @@ package chess;
 import chess.enums.Color;
 import gameboard.Board;
 import gameboard.Piece;
+import gameboard.Position;
 
 public abstract class ChessPiece extends Piece {
 	private Color color;
@@ -25,9 +26,18 @@ public abstract class ChessPiece extends Piece {
 		return null;
 	}
 
-	public abstract boolean isThereOpponentPiece();
+	protected boolean isThereOpponentPiece(Position position) {
+		ChessPiece piece = (ChessPiece)getBoard().piece(position);
+		
+		//non-null piece and different color from the current piece
+		return piece != null && piece.getColor() != color;
+	}
 
-	public abstract void increaseMoveCount();
+	protected void increaseMoveCount() {
+		
+	}
 
-	public abstract void decreaseMoveCount();
+	protected void decreaseMoveCount() {
+		
+	}
 }
