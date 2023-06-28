@@ -35,4 +35,10 @@ public class Queen extends ChessPiece{
 		return "Q";	
 	}
 
+	@Override
+	public boolean[][] possibleMoves() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

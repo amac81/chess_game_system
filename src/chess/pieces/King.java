@@ -36,4 +36,13 @@ public class King extends ChessPiece {
 		return "K";	
 	}
 
+	@Override
+	public 	boolean[][] possibleMoves() {
+		//initially, when created, the matrix has all positions with the value False
+		
+		boolean [][] auxMat = new boolean[getBoard().getRows()][getBoard().getColumns()];
+		
+		return auxMat;
+	}
+
 }

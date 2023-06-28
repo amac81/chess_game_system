@@ -35,4 +35,10 @@ public class Knight extends ChessPiece{
 		return "K";	
 	}
 
+	@Override
+	public boolean[][] possibleMoves() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
