@@ -1,6 +1,10 @@
 package application;
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 import chess.ChessPiece;
+import chess.ChessPosition;
 import chess.enums.Color;
 
 /*
@@ -37,6 +41,19 @@ public class UI {
 
 	}
 
+	public static ChessPosition readChessPosition(Scanner sc) {
+		try {
+		String str = sc.nextLine();
+		char column = str.charAt(0);
+		int row = Integer.parseInt(str.substring(1));
+		return new ChessPosition(column, row);
+		
+		}
+		catch(RuntimeException e) {
+			throw new InputMismatchException("Error reading ChessPosition. Valide values are from a1 to h8!");
+		}
+	}
+	
 	// https://stackoverflow.com/questions/2979383/java-clear-the-console
 	public static void clearScreen() {
 		System.out.print("\033[H\033[2J");
@@ -47,5 +64,6 @@ public class UI {
 	public static void testTextColors() {
 		System.out.println(ConsoleColors.RED + "RED COLORED" + ConsoleColors.RESET + " NORMAL");
 	}
+	
 
 }

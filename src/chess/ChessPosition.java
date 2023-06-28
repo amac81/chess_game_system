@@ -54,7 +54,7 @@ public class ChessPosition {
 	* matrix_column = chess_column - 'a'
 	* 
 	*/
-	protected Position toPosition() {
+	protected Position toMatrixPosition() {
 		return new Position(8 - row, column - 'a');
 	}
 

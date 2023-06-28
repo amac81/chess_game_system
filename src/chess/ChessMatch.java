@@ -7,6 +7,7 @@ import chess.pieces.King;
 import chess.pieces.Queen;
 import chess.pieces.Rook;
 import gameboard.Board;
+import gameboard.Piece;
 import gameboard.Position;
 
 public class ChessMatch {
@@ -34,19 +35,40 @@ public class ChessMatch {
 	}
 
 	private void placeNewPiece(char column, int row, ChessPiece piece) {
-		board.placePiece(piece, new ChessPosition(column, row).toPosition());
+		board.placePiece(piece, new ChessPosition(column, row).toMatrixPosition());
 	}
+	
+	public ChessPiece performeChessMove(ChessPosition sourcePosition, ChessPosition targetPosition) {
+		//convert chess positions to matrix positions
+		Position source = sourcePosition.toMatrixPosition();
+		Position target = targetPosition.toMatrixPosition();
+		validateSourcePosition(source);
+		Piece capturedPiece = makeMove(source, target);
+		
+		//down cast from Piece(matrix) to ChessPiece
+		return (ChessPiece) capturedPiece;
+	}
+	
+	private Piece makeMove(Position source, Position target) {
+		Piece piece = board.removePiece(source);
+		Piece capturedPiece = board.removePiece(target);
+		board.placePiece(piece, target);
+		return capturedPiece;
+	} 
+
+	private void validateSourcePosition(Position position) {
+		if(!board.thereIsAPiece(position)) {
+			throw new ChessException("There is no piece on source position!");
+		}		
+	} 
 	
 	
 	private void initialSetup() {
 		placeNewPiece('b', 6, new Rook(board, Color.WHITE));
 		placeNewPiece('e', 8, new King(board, Color.BLACK));
 		placeNewPiece('c', 4, new Queen(board, Color.WHITE));
-
-
 	}
 
-	
 	public Board getBoard() {
 		return board;
 	}
@@ -92,10 +114,6 @@ public class ChessMatch {
 	}
 
 	public List<Boolean> possibleMove(ChessPosition sourcePosition) {
-		return null;
-	}
-
-	public ChessPiece performeChessMove(ChessPosition sourcePosition, ChessPosition targetPosition) {
 		return null;
 	}
 
