@@ -82,7 +82,7 @@ public class ChessMatch {
 	
 	private void initialSetup() {
 		placeNewPiece('c', 1, new Rook(board, Color.WHITE));
-		placeNewPiece('d', 1, new King(board, Color.BLACK));
+		placeNewPiece('d', 1, new King(board, Color.WHITE));
 		placeNewPiece('e', 1, new Rook(board, Color.WHITE));
 		placeNewPiece('c', 2, new Rook(board, Color.WHITE));
 		placeNewPiece('d', 2, new King(board, Color.WHITE));

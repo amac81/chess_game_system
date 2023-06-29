@@ -11,7 +11,11 @@ import chess.enums.Color;
  * This UserInterface class:
  * gets the game pieces matrix
  * print the game board
-*/
+
+
+ OOP Topics:
+ * method override printPiece()
+ */
 
 public class UI {
 
