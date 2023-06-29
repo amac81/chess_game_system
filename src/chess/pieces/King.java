@@ -1,7 +1,5 @@
 package chess.pieces;
 
-import java.util.Scanner;
-
 import chess.ChessPiece;
 import chess.enums.Color;
 import gameboard.Board;
