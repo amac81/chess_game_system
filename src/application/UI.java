@@ -28,7 +28,7 @@ public class UI {
 	}
 	
 
-	public static void printBoard(ChessPiece[][] pieces) {
+	private static void printBoard(ChessPiece[][] pieces) {
 		int limit = pieces.length; // square matrix: same number of rows and columns
 
 		for (int i = 0; i < limit; i++) {
@@ -55,7 +55,7 @@ public class UI {
 	}	
 	
 
-	public static void printPiece(ChessPiece piece, boolean possibleMove) {
+	private static void printPiece(ChessPiece piece, boolean possibleMove) {
 		if (possibleMove) {
 			System.out.print(ConsoleColors.ANSI_GREEN_BACKGROUND);
 		}
