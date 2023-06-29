@@ -1,10 +1,7 @@
 package chess;
 
-import java.util.List;
-
 import chess.enums.Color;
 import chess.pieces.King;
-import chess.pieces.Queen;
 import chess.pieces.Rook;
 import gameboard.Board;
 import gameboard.Piece;
@@ -43,6 +40,7 @@ public class ChessMatch {
 		Position source = sourcePosition.toMatrixPosition();
 		Position target = targetPosition.toMatrixPosition();
 		validateSourcePosition(source);
+		validateTargetPosition(source, target);
 		Piece capturedPiece = makeMove(source, target);
 		
 		//down cast from Piece(matrix) to ChessPiece
@@ -65,23 +63,26 @@ public class ChessMatch {
 		}
 	} 
 	
+	private void validateTargetPosition(Position source, Position target) {
+		if(!board.piece(source).possibleMove(target)) {
+			throw new ChessException("The chosen piece can't move to target position!");
+		}
+	} 
 	
 	private void initialSetup() {
 		placeNewPiece('c', 1, new Rook(board, Color.WHITE));
-		placeNewPiece('d', 1, new King(board, Color.WHITE));
+		placeNewPiece('d', 1, new King(board, Color.BLACK));
 		placeNewPiece('e', 1, new Rook(board, Color.WHITE));
 		placeNewPiece('c', 2, new Rook(board, Color.WHITE));
 		placeNewPiece('d', 2, new King(board, Color.WHITE));
 		placeNewPiece('e', 2, new Rook(board, Color.WHITE));
-		
 		
 		placeNewPiece('c', 7, new Rook(board, Color.BLACK));
 		placeNewPiece('d', 7, new King(board, Color.BLACK));
 		placeNewPiece('e', 7, new Rook(board, Color.BLACK));
 		placeNewPiece('c', 8, new Rook(board, Color.BLACK));
 		placeNewPiece('d', 8, new King(board, Color.BLACK));
-		placeNewPiece('e', 8, new Rook(board, Color.BLACK));
-		
+		placeNewPiece('e', 8, new Rook(board, Color.BLACK));		
 	}
 
 	public Board getBoard() {
@@ -128,9 +129,6 @@ public class ChessMatch {
 		return mat; //returns the array of pieces from my chess match
 	}
 
-	public List<Boolean> possibleMove(ChessPosition sourcePosition) {
-		return null;
-	}
 
 	public ChessPiece replacePromotedPiece(String type) {
 		return null;
