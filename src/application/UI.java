@@ -3,6 +3,7 @@ package application;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import chess.ChessMatch;
 import chess.ChessPiece;
 import chess.ChessPosition;
 import chess.enums.Color;
@@ -18,6 +19,14 @@ import chess.enums.Color;
  */
 
 public class UI {
+	
+	public static void printMatch(ChessMatch chessMatch) {
+		printBoard(chessMatch.getPieces());
+		System.out.println();
+		System.out.println("Turn: " + chessMatch.getTurn());
+		System.out.println("Waiting Player " + chessMatch.getCurrentPlayer());		
+	}
+	
 
 	public static void printBoard(ChessPiece[][] pieces) {
 		int limit = pieces.length; // square matrix: same number of rows and columns

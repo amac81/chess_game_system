@@ -18,13 +18,15 @@ public class ChessMatch {
 
 	public ChessMatch() {// it is this class that knows the size of the board
 		board = new Board(8, 8);
+		turn = 1;
+		currentPlayer = Color.WHITE; //the player with the white pieces makes the first move
 		initialSetup();
 	}
 
 	public ChessMatch(int turn, Color currentPlayer, Boolean check, Boolean checkMate, ChessPiece enPassantVulnerable,
 			ChessPiece promoted) {
 		this.turn = turn;
-		this.currentPlayer = currentPlayer;
+		this.currentPlayer = currentPlayer; 
 		this.check = check;
 		this.checkMate = checkMate;
 		this.enPassantVulnerable = enPassantVulnerable;
@@ -42,6 +44,7 @@ public class ChessMatch {
 		validateSourcePosition(source);
 		validateTargetPosition(source, target);
 		Piece capturedPiece = makeMove(source, target);
+		nextTurn();
 		
 		//down cast from Piece(matrix) to ChessPiece
 		return (ChessPiece) capturedPiece;
@@ -58,6 +61,12 @@ public class ChessMatch {
 		if(!board.thereIsAPiece(position)) {
 			throw new ChessException("There is no piece on source position!");
 		}
+		
+		//player tries to move a piece that is not his
+		if(currentPlayer != ((ChessPiece)board.piece(position)).getColor()) {
+			throw new ChessException("The chosen piece isn't yours!");
+		}
+		
 		if(!board.piece(position).isThereAnyPossibleMove()) {
 			throw new ChessException("There is no possible move for the chosen piece!");
 		}
@@ -78,6 +87,11 @@ public class ChessMatch {
 		return board.piece(position).possibleMoves();
 	}
 	
+	
+	private void nextTurn() {
+		turn ++;
+		currentPlayer = (currentPlayer == Color.WHITE) ? Color.BLACK : Color.WHITE;
+	}
 	
 	
 	private void initialSetup() {
