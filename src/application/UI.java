@@ -21,24 +21,43 @@ public class UI {
 		for (int i = 0; i < limit; i++) {
 			System.out.print(limit - i + " ");
 			for (int j = 0; j < limit; j++) {
-				printPiece(pieces[i][j]);
+				printPiece(pieces[i][j], false);
 			}
 			System.out.println();
 		}
 		System.out.print("  a b c d e f g h");
 	}
+	
+	public static void printBoard(ChessPiece[][] pieces, boolean possibleMoves[][]) {
+		int limit = pieces.length; // square matrix: same number of rows and columns
 
-	public static void printPiece(ChessPiece piece) {
-		if (piece == null) {
-			System.out.print("-");
-		} else {
-			if(piece.getColor() == Color.BLACK)
-				System.out.print(ConsoleColors.YELLOW + ConsoleColors.BLACK_BACKGROUND + piece + ConsoleColors.RESET );
-			else
-				System.out.print(ConsoleColors.WHITE_BRIGHT + ConsoleColors.BLACK_BACKGROUND + piece + ConsoleColors.RESET );
+		for (int i = 0; i < limit; i++) {
+			System.out.print(limit - i + " ");
+			for (int j = 0; j < limit; j++) {
+				printPiece(pieces[i][j], possibleMoves[i][j]);
+			}
+			System.out.println();
 		}
-		System.out.print(" ");// to separate pieces
+		System.out.print("  a b c d e f g h");
+	}	
+	
 
+	public static void printPiece(ChessPiece piece, boolean possibleMove) {
+		if (possibleMove) {
+			System.out.print(ConsoleColors.ANSI_GREEN_BACKGROUND);
+		}
+
+		if (piece == null) {
+			System.out.print("-" + ConsoleColors.ANSI_RESET);
+		} else {
+			if (piece.getColor() == Color.WHITE) {
+				System.out.print(ConsoleColors.ANSI_WHITE + piece + ConsoleColors.ANSI_RESET);
+			} else {
+				System.out.print(ConsoleColors.ANSI_YELLOW + piece + ConsoleColors.ANSI_RESET);
+			}
+		}
+
+		System.out.print(" ");// to separate pieces
 	}
 
 	public static ChessPosition readChessPosition(Scanner sc) {
@@ -59,11 +78,5 @@ public class UI {
 		System.out.print("\033[H\033[2J"); 
 		System.out.flush();
 	}
-
-	// https://stackoverflow.com/questions/5762491/how-to-print-color-in-console-using-system-out-println
-	public static void testTextColors() {
-		System.out.println(ConsoleColors.RED + "RED COLORED" + ConsoleColors.RESET + " NORMAL");
-	}
-	
 
 }

@@ -69,6 +69,17 @@ public class ChessMatch {
 		}
 	} 
 	
+	
+	public boolean [][] possibleMoves(ChessPosition sourcePosition) {
+		//1st convert a Chess Position to a matrix Position
+		Position position = sourcePosition.toMatrixPosition();
+		validateSourcePosition(position);
+		
+		return board.piece(position).possibleMoves();
+	}
+	
+	
+	
 	private void initialSetup() {
 		placeNewPiece('c', 1, new Rook(board, Color.WHITE));
 		placeNewPiece('d', 1, new King(board, Color.BLACK));
