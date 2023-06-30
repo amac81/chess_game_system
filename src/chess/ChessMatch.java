@@ -23,20 +23,20 @@ public class ChessMatch {
 	private boolean checkMate;
 	private ChessPiece enPassantVulnerable;
 	private ChessPiece promoted;
-	private List <Piece> piecesOnTheBoard = new ArrayList<>();
-	private List <Piece> capturedPieces = new ArrayList<>();
+	private List<Piece> piecesOnTheBoard = new ArrayList<>();
+	private List<Piece> capturedPieces = new ArrayList<>();
 
 	public ChessMatch() {// it is this class that knows the size of the board
 		board = new Board(8, 8);
 		turn = 1;
-		currentPlayer = Color.WHITE; //the player with the white pieces makes the first move
+		currentPlayer = Color.WHITE; // the player with the white pieces makes the first move
 		initialSetup();
 	}
 
 	public ChessMatch(int turn, Color currentPlayer, Boolean check, Boolean checkMate, ChessPiece enPassantVulnerable,
 			ChessPiece promoted) {
 		this.turn = turn;
-		this.currentPlayer = currentPlayer; 
+		this.currentPlayer = currentPlayer;
 		this.check = check;
 		this.checkMate = checkMate;
 		this.enPassantVulnerable = enPassantVulnerable;
@@ -47,102 +47,104 @@ public class ChessMatch {
 		board.placePiece(piece, new ChessPosition(column, row).toMatrixPosition());
 		piecesOnTheBoard.add(piece);
 	}
-	
+
 	public ChessPiece performeChessMove(ChessPosition sourcePosition, ChessPosition targetPosition) {
-		//convert chess positions to matrix positions
+		// convert chess positions to matrix positions
 		Position source = sourcePosition.toMatrixPosition();
 		Position target = targetPosition.toMatrixPosition();
 		validateSourcePosition(source);
 		validateTargetPosition(source, target);
 		Piece capturedPiece = makeMove(source, target);
-		
-		if(testCheck(currentPlayer)) {
+
+		if (testCheck(currentPlayer)) {
 			undoMove(source, target, capturedPiece);
 			throw new ChessException("You cannot put yourself in a check position!");
 		}
-		
-		//check opponent check after currentPlayer successful move
-		//and sign this in the check attribute of the ChessMatch
-		check = testCheck(opponent(currentPlayer)) ? true: false;
-		
-		nextTurn();
-		
-		//down cast from Piece(matrix) to ChessPiece
+
+		// check opponent check after currentPlayer successful move
+		// and sign this in the check attribute of the ChessMatch
+		check = testCheck(opponent(currentPlayer)) ? true : false;
+
+		if(testCheckMate(opponent(currentPlayer))) {
+			checkMate = true;
+		}else {
+			nextTurn();
+		}
+		// down cast from Piece(matrix) to ChessPiece
 		return (ChessPiece) capturedPiece;
 	}
-	
+
 	private Piece makeMove(Position source, Position target) {
 		Piece piece = board.removePiece(source);
 		Piece capturedPiece = board.removePiece(target);
 		board.placePiece(piece, target);
-		if(capturedPiece != null) {
+		if (capturedPiece != null) {
 			piecesOnTheBoard.remove(capturedPiece);
 			capturedPieces.add(capturedPiece);
 		}
-			
+
 		return capturedPiece;
-	} 
-	
+	}
+
 	private void undoMove(Position source, Position target, Piece capturedPiece) {
 		Piece piece = board.removePiece(target);
 		board.placePiece(piece, source);
-		if(capturedPiece != null) {
-			board.placePiece(capturedPiece, target);	
+		if (capturedPiece != null) {
+			board.placePiece(capturedPiece, target);
 			capturedPieces.remove(capturedPiece);
 			piecesOnTheBoard.add(capturedPiece);
-			
+
 		}
-	} 
-	
+	}
+
 	private void validateSourcePosition(Position position) {
-		if(!board.thereIsAPiece(position)) {
+		if (!board.thereIsAPiece(position)) {
 			throw new ChessException("There is no piece on source position!");
 		}
-		
-		//player tries to move a piece that is not his
-		if(currentPlayer != ((ChessPiece)board.piece(position)).getColor()) {
+
+		// player tries to move a piece that is not his
+		if (currentPlayer != ((ChessPiece) board.piece(position)).getColor()) {
 			throw new ChessException("The chosen piece isn't yours!");
 		}
-		
-		if(!board.piece(position).isThereAnyPossibleMove()) {
+
+		if (!board.piece(position).isThereAnyPossibleMove()) {
 			throw new ChessException("There is no possible move for the chosen piece!");
 		}
-	} 
-	
+	}
+
 	private void validateTargetPosition(Position source, Position target) {
-		if(!board.piece(source).possibleMove(target)) {
+		if (!board.piece(source).possibleMove(target)) {
 			throw new ChessException("The chosen piece can't move to target position!");
 		}
-	} 
-	
-	
-	public boolean [][] possibleMoves(ChessPosition sourcePosition) {
-		//1st convert a Chess Position to a matrix Position
+	}
+
+	public boolean[][] possibleMoves(ChessPosition sourcePosition) {
+		// 1st convert a Chess Position to a matrix Position
 		Position position = sourcePosition.toMatrixPosition();
 		validateSourcePosition(position);
-		
+
 		return board.piece(position).possibleMoves();
 	}
-	
-	
+
 	private void nextTurn() {
-		turn ++;
+		turn++;
 		currentPlayer = (currentPlayer == Color.WHITE) ? Color.BLACK : Color.WHITE;
 	}
-	
+
 	private Color opponent(Color color) {
 		return (color == Color.WHITE) ? Color.BLACK : Color.WHITE;
 	}
-	
+
 	private ChessPiece king(Color color) {
-		List<Piece> list = piecesOnTheBoard.stream().filter(p -> ((ChessPiece)p).getColor() == color).collect(Collectors.toList());
-		
-		for(Piece p: list) {
-			if(p instanceof King){
-				return (ChessPiece)p;
+		List<Piece> list = piecesOnTheBoard.stream().filter(p -> ((ChessPiece) p).getColor() == color)
+				.collect(Collectors.toList());
+
+		for (Piece p : list) {
+			if (p instanceof King) {
+				return (ChessPiece) p;
 			}
 		}
-		throw new IllegalStateException("There is no " + color + " king on the board");	
+		throw new IllegalStateException("There is no " + color + " king on the board");
 	}
 
 	// validate that for all the opponent's pieces,
@@ -158,24 +160,50 @@ public class ChessMatch {
 				return true; // the king is in check position
 			}
 		}
-
 		return false;
 	}
-	
+
+	/*
+	 * the king is in check mate position when it is in check and there is no
+	 * possible move, by a piece of its color, that takes it out of the check
+	 * situation
+	 */
+	private boolean testCheckMate(Color color) {
+		if (!testCheck(color)) {
+			return false;
+		}
+
+		List<Piece> myPieces = piecesOnTheBoard.stream().filter(p -> ((ChessPiece) p).getColor() == color)
+				.collect(Collectors.toList());
+
+		for (Piece p : myPieces) {
+			boolean[][] mat = p.possibleMoves();
+			for (int i = 0; i < 8; i++) {
+				for (int j = 0; j < 8; j++) {
+					if (mat[i][j]) {
+						Position source = ((ChessPiece) p).getChessPosition().toMatrixPosition();
+						Position target = new Position(j, j);
+						Piece capturedPiece = makeMove(source, target);
+						boolean testCheck = testCheck(color);
+						undoMove(source, target, capturedPiece);
+						if (!testCheck) {
+							return false;
+						}
+					}
+				}
+			}
+		}
+
+		return true;// the king is in Check Mate position
+	}
+
 	private void initialSetup() {
-		placeNewPiece('c', 1, new Rook(board, Color.WHITE));
-		placeNewPiece('d', 1, new King(board, Color.WHITE));
-		placeNewPiece('e', 1, new Rook(board, Color.WHITE));
-		placeNewPiece('c', 2, new Rook(board, Color.WHITE));
-		placeNewPiece('d', 2, new King(board, Color.WHITE));
-		placeNewPiece('e', 2, new Rook(board, Color.WHITE));
-		
-		placeNewPiece('c', 7, new Rook(board, Color.BLACK));
-		placeNewPiece('d', 7, new King(board, Color.BLACK));
-		placeNewPiece('e', 7, new Rook(board, Color.BLACK));
-		placeNewPiece('c', 8, new Rook(board, Color.BLACK));
-		placeNewPiece('d', 8, new King(board, Color.BLACK));
-		placeNewPiece('e', 8, new Rook(board, Color.BLACK));		
+		placeNewPiece('h', 7, new Rook(board, Color.WHITE));
+		placeNewPiece('d', 1, new Rook(board, Color.WHITE));
+		placeNewPiece('e', 1, new King(board, Color.WHITE));
+
+		placeNewPiece('b', 8, new Rook(board, Color.BLACK));
+		placeNewPiece('a', 8, new King(board, Color.BLACK));
 	}
 
 	public Board getBoard() {
@@ -218,10 +246,9 @@ public class ChessMatch {
 				mat[i][j] = (ChessPiece) board.piece(i, j);
 			}
 		}
-		
-		return mat; //returns the array of pieces from my chess match
-	}
 
+		return mat; // returns the array of pieces from my chess match
+	}
 
 	public ChessPiece replacePromotedPiece(String type) {
 		return null;
