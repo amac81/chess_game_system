@@ -18,7 +18,7 @@ public class ChessMatch {
 	private Boolean checkMate;
 	private ChessPiece enPassantVulnerable;
 	private ChessPiece promoted;
-	private List <Piece> piecesOnTheBoard	 = new ArrayList<>();
+	private List <Piece> piecesOnTheBoard = new ArrayList<>();
 	private List <Piece> capturedPieces = new ArrayList<>();
 
 	public ChessMatch() {// it is this class that knows the size of the board
