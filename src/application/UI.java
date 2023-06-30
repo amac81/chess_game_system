@@ -32,10 +32,12 @@ public class UI {
 	public static void printMatch(ChessMatch chessMatch, List <ChessPiece> capturedPieces) {
 		printBoard(chessMatch.getPieces());
 		System.out.println();
+		printCapturedPieces(capturedPieces);
+		System.out.println();
 		System.out.println();
 		System.out.println("Turn: " + chessMatch.getTurn());
 		System.out.println("Waiting Player:" + chessMatch.getCurrentPlayer());
-		printCapturedPieces(capturedPieces);
+
 	}
 
 	private static void printBoard(ChessPiece[][] pieces) {

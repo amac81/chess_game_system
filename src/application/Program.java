@@ -12,7 +12,7 @@ import chess.ChessPosition;
 
 public class Program {
 	public static void main(String[] args) {
-
+		
 		Scanner sc = new Scanner(System.in);
 		ChessMatch chessMatch = new ChessMatch();
 		List <ChessPiece> capturedPieces  = new ArrayList <>() ;
@@ -26,6 +26,7 @@ public class Program {
 				ChessPosition source = UI.readChessPosition(sc);
 				
 				boolean possibleMoves[][] = chessMatch.possibleMoves(source);
+				
 				
 				UI.printBoard(chessMatch.getPieces(), possibleMoves);
 	
