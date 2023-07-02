@@ -65,9 +65,9 @@ public class ChessMatch {
 		// and sign this in the check attribute of the ChessMatch
 		check = testCheck(opponent(currentPlayer)) ? true : false;
 
-		if(testCheckMate(opponent(currentPlayer))) {
+		if (testCheckMate(opponent(currentPlayer))) {
 			checkMate = true;
-		}else {
+		} else {
 			nextTurn();
 		}
 		// down cast from Piece(matrix) to ChessPiece
@@ -75,7 +75,9 @@ public class ChessMatch {
 	}
 
 	private Piece makeMove(Position source, Position target) {
-		Piece piece = board.removePiece(source);
+		ChessPiece piece = (ChessPiece) board.removePiece(source);
+		piece.increaseMoveCount();
+
 		Piece capturedPiece = board.removePiece(target);
 		board.placePiece(piece, target);
 		if (capturedPiece != null) {
@@ -87,7 +89,9 @@ public class ChessMatch {
 	}
 
 	private void undoMove(Position source, Position target, Piece capturedPiece) {
-		Piece piece = board.removePiece(target);
+		ChessPiece piece = (ChessPiece) board.removePiece(target);
+		piece.decreaseMoveCount();
+
 		board.placePiece(piece, source);
 		if (capturedPiece != null) {
 			board.placePiece(capturedPiece, target);
