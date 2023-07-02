@@ -35,7 +35,7 @@ public class UI {
 		printCapturedPieces(capturedPieces);
 		System.out.println();
 		System.out.println();
-		
+			
 		System.out.println("Turn: " + chessMatch.getTurn());
 	
 		if(!chessMatch.getCheckMate()) {

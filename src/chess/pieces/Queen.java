@@ -11,28 +11,17 @@ public class Queen extends ChessPiece{
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public void increaseMoveCount() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
-	public void decreaseMoveCount() {
+	public boolean[][] possibleMoves() {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 	
 
 	@Override
 	public String toString() {
 		return "Q";	
-	}
-
-	@Override
-	public boolean[][] possibleMoves() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

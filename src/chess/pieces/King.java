@@ -14,22 +14,6 @@ public class King extends ChessPiece {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public void increaseMoveCount() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void decreaseMoveCount() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public String toString() {
-		return "K";	
-	}
 
 	private boolean canMove(Position position) {
 		ChessPiece piece = (ChessPiece)getBoard().piece(position);
@@ -70,7 +54,7 @@ public class King extends ChessPiece {
 			auxMat[p.getRow()][p.getColumn()] = true;
 		}
 		
-		//Above Left (NO)
+		//Above Left (NW)
 		p.setValues(position.getRow() - 1, position.getColumn() - 1 );
 		if(getBoard().positionExists(p) && canMove(p)) {
 			auxMat[p.getRow()][p.getColumn()] = true;
@@ -82,7 +66,7 @@ public class King extends ChessPiece {
 			auxMat[p.getRow()][p.getColumn()] = true;
 		}
 
-		//Below Left (SO)
+		//Below Left (SW)
 		p.setValues(position.getRow() + 1, position.getColumn() - 1 );
 		if(getBoard().positionExists(p) && canMove(p)) {
 			auxMat[p.getRow()][p.getColumn()] = true;
@@ -97,4 +81,9 @@ public class King extends ChessPiece {
 		return auxMat;
 	}
 
+	@Override
+	public String toString() {
+		return "K";	
+	}
+	
 }

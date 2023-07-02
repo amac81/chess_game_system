@@ -11,25 +11,7 @@ public class Pawn extends ChessPiece{
 		super(board, color);
 		// TODO Auto-generated constructor stub
 	}
-
-	@Override
-	public void increaseMoveCount() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void decreaseMoveCount() {
-		// TODO Auto-generated method stub
-		
-	}
 	
-
-	@Override
-	public String toString() {
-		return "P";	
-	}
-
 	/*the pawn can move in a straight line only one position at a time. 
 	*If it's the first time it move, it can move 2 positions
 	*
@@ -51,8 +33,8 @@ public class Pawn extends ChessPiece{
 			p.setValues(position.getRow() - 2, position.getColumn());
 			//position before
 			Position p2 = new Position(position.getRow() - 1, position.getColumn());	
-			if (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p) && getBoard().positionExists(p2)
-					&& !getBoard().thereIsAPiece(p2) && getMoveCount() == 0) {
+			if (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p) && getMoveCount() == 0 && getBoard().positionExists(p2)
+					&& !getBoard().thereIsAPiece(p2)) {
 				auxMat[p.getRow()][p.getColumn()] = true;
 			}
 			//diagonal moves
@@ -76,8 +58,8 @@ public class Pawn extends ChessPiece{
 			p.setValues(position.getRow() + 2, position.getColumn());
 			//position before
 			Position p2 = new Position(position.getRow() + 1, position.getColumn());	
-			if (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p) && getBoard().positionExists(p2)
-					&& !getBoard().thereIsAPiece(p2) && getMoveCount() == 0) {
+			if (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p) && getMoveCount() == 0 && getBoard().positionExists(p2)
+					&& !getBoard().thereIsAPiece(p2)) {
 				auxMat[p.getRow()][p.getColumn()] = true;
 			}
 			//diagonal moves
@@ -95,6 +77,12 @@ public class Pawn extends ChessPiece{
 		
 		return auxMat;
 	}
+
+	@Override
+	public String toString() {
+		return "P";	
+	}
+
 
 }
 	

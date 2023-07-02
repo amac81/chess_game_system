@@ -18,7 +18,7 @@ public abstract class ChessPiece extends Piece {
 		return color;
 	}
 
-	public int getMoveCount() {
+	public int getMoveCount() {		
 		return moveCount;
 	}
 
@@ -33,10 +33,10 @@ public abstract class ChessPiece extends Piece {
 	}
 
 	protected void increaseMoveCount() {
-		
+		moveCount++;
 	}
 
 	protected void decreaseMoveCount() {
-		
+		moveCount--;
 	}
 }

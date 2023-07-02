@@ -21,23 +21,6 @@ public class Rook extends ChessPiece {
 	}
 
 
-	@Override
-	public void increaseMoveCount() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void decreaseMoveCount() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public String toString() {
-		return "R";
-	}
-
 	// the rook can move in a straight line, horizontally and vertically free
 	// positions, including positions where there is an opponent's piece (the rook can capture it)
 	// 
@@ -94,6 +77,14 @@ public class Rook extends ChessPiece {
 		}
 		
 		return auxMat;
+	}
+	
+
+
+
+	@Override
+	public String toString() {
+		return "R";
 	}
 
 }
