@@ -77,9 +77,9 @@ public class King extends ChessPiece {
 			auxMat[p.getRow()][p.getColumn()] = true;
 		}
 
-		// #Special move Castling King Side rook
+		//#special_move Castling King Side rook
 		if (getMoveCount() == 0 && !chessMatch.getCheck()) {
-			// #Special Move Castling king side Rook
+			// #special_move Castling king side Rook
 			// Rook: 3 columns to right
 			Position posRook1 = new Position(position.getRow(), position.getColumn() + 3);
 			if (testRookCastling(posRook1)) {
@@ -91,7 +91,7 @@ public class King extends ChessPiece {
 
 			}
 			
-			// #Special Move Castling Queen Side Rook
+			// #special_move Castling Queen Side Rook
 			// Rook: 4 columns to left
 			Position posRook2 = new Position(position.getRow(), position.getColumn() - 3);
 			if (testRookCastling(posRook1)) {
