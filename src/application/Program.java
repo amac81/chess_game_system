@@ -21,10 +21,10 @@ public class Program {
 			try {
 				UI.clearScreen();
 				
-				System.out.println("\nFIX ROOK move !!!!");
+			/*	System.out.println("\nFIX ROOK move !!!!");
 				System.out.println("FIX ROOK move !!!!");
 				System.out.println("FIX ROOK move !!!!");
-				System.out.println("FIX ROOK move !!!!");
+				System.out.println("FIX ROOK move !!!!");*/
 				
 				UI.printMatch(chessMatch, capturedPieces);
 				System.out.println();
