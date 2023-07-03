@@ -79,9 +79,6 @@ public class Rook extends ChessPiece {
 		return auxMat;
 	}
 	
-
-
-
 	@Override
 	public String toString() {
 		return "R";
