@@ -20,12 +20,7 @@ public class Program {
 		while (!chessMatch.getCheckMate()) {
 			try {
 				UI.clearScreen();
-				
-			/*	System.out.println("\nFIX ROOK move !!!!");
-				System.out.println("FIX ROOK move !!!!");
-				System.out.println("FIX ROOK move !!!!");
-				System.out.println("FIX ROOK move !!!!");*/
-				
+		
 				UI.printMatch(chessMatch, capturedPieces);
 				System.out.println();
 				System.out.print("\nSource: ");
@@ -45,6 +40,14 @@ public class Program {
 				{
 					capturedPieces.add(capturedPiece);
 				}
+				
+				//a Pawn was promoted
+				if(chessMatch.getPromoted() != null) 
+				{
+					System.out.print("Enter piece type for Promotion (Q, B, N, R): ");
+					String type = sc.nextLine();
+					chessMatch.replacePromotedPiece(type);
+				}				
 			} 
 			catch (ChessException e) {
 				System.out.println(e.getMessage());

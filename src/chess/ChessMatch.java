@@ -1,11 +1,14 @@
 package chess;
 
+import java.security.InvalidParameterException;
+
 /* Data Structures Topics:
 * - List
 */
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 import chess.enums.Color;
@@ -66,6 +69,17 @@ public class ChessMatch {
 		}
 
 		ChessPiece movedPiece = (ChessPiece) board.piece(target);
+
+		// #special_move Promotion
+		promoted = null;
+
+		if (movedPiece instanceof Pawn) {
+			if (movedPiece.getColor() == Color.WHITE && target.getRow() == 0
+					|| movedPiece.getColor() == Color.BLACK && target.getRow() == 7) {
+				promoted = (ChessPiece) board.piece(target);
+				promoted = replacePromotedPiece("Q");// Queen by default
+			}
+		}
 
 		// check opponent check after currentPlayer successful move
 		// and sign this in the check attribute of the ChessMatch
@@ -359,7 +373,41 @@ public class ChessMatch {
 	}
 
 	public ChessPiece replacePromotedPiece(String type) {
-		return null;
+
+		if (promoted == null) {
+			throw new IllegalStateException("There is no piece to be promoted!");
+		}
+
+		// use of method equals for String compare. String is a Class, not a primitive
+		// type
+		if (!type.equals("B") && !type.equals("N") && !type.equals("R") && !type.equals("Q")) {
+			throw new InvalidParameterException("Invalid type of piece for promotion");
+		}
+
+		Position pos = promoted.getChessPosition().toMatrixPosition();
+		Piece p = board.removePiece(pos);
+
+		piecesOnTheBoard.remove(p);
+
+		ChessPiece newPiece = newPiece(type, promoted.getColor());
+
+		board.placePiece(newPiece, pos);
+		piecesOnTheBoard.add(newPiece);
+
+		return newPiece;
+	}
+
+	private ChessPiece newPiece(String type, Color color) {
+		if (type.equals("Q")) {
+			return new Queen(board, color);
+		}
+		if (type.equals("N")) {
+			return new Knight(board, color);
+		}
+		if (type.equals("B")) {
+			return new Bishop(board, color);
+		}
+		return new Rook(board, color);
 	}
 
 }
