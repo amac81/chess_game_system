@@ -1,14 +1,11 @@
 package chess;
 
-import java.security.InvalidParameterException;
-
 /* Data Structures Topics:
 * - List
 */
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
 import chess.enums.Color;
@@ -381,7 +378,7 @@ public class ChessMatch {
 		// use of method equals for String compare. String is a Class, not a primitive
 		// type
 		if (!type.equals("B") && !type.equals("N") && !type.equals("R") && !type.equals("Q")) {
-			throw new InvalidParameterException("Invalid type of piece for promotion");
+			return promoted;
 		}
 
 		Position pos = promoted.getChessPosition().toMatrixPosition();
